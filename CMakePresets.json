@@ -20,7 +20,7 @@
             "hidden": true,
             "inherits": "build-base",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug", 
+                "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebugDLL"
             }
         },
@@ -82,39 +82,71 @@
         },
         {
             "name": "build-debug-all",
-            "inherits": [ "build-debug", "commonlibsse-all" ],
+            "inherits": [
+                "build-debug",
+                "commonlibsse-all"
+            ],
             "displayName": "[All] Debug",
             "binaryDir": "${sourceDir}/build/all/debug"
         },
         {
             "name": "build-relwithdebinfo-all",
-            "inherits": [ "build-relwithdebinfo", "commonlibsse-all" ],
+            "inherits": [
+                "build-relwithdebinfo",
+                "commonlibsse-all"
+            ],
             "displayName": "[All] RelWithDebInfo",
             "binaryDir": "${sourceDir}/build/all/relwithdebinfo"
         },
         {
             "name": "build-debug-se-only",
-            "inherits": [ "build-debug", "commonlibsse-se-only" ],
+            "inherits": [
+                "build-debug",
+                "commonlibsse-se-only"
+            ],
             "displayName": "[SE-only] Debug",
             "binaryDir": "${sourceDir}/build/se-only/debug"
         },
         {
             "name": "build-relwithdebinfo-se-only",
-            "inherits": [ "build-relwithdebinfo", "commonlibsse-se-only" ],
+            "inherits": [
+                "build-relwithdebinfo",
+                "commonlibsse-se-only"
+            ],
             "displayName": "[SE-only] RelWithDebInfo",
             "binaryDir": "${sourceDir}/build/se-only/relwithdebinfo"
         },
         {
             "name": "build-debug-vr-only",
-            "inherits": [ "build-debug", "commonlibsse-vr-only" ],
+            "inherits": [
+                "build-debug",
+                "commonlibsse-vr-only"
+            ],
             "displayName": "[VR-only] Debug",
             "binaryDir": "${sourceDir}/build/vr-only/debug"
         },
         {
             "name": "build-relwithdebinfo-vr-only",
-            "inherits": [ "build-relwithdebinfo", "commonlibsse-vr-only" ],
+            "inherits": [
+                "build-relwithdebinfo",
+                "commonlibsse-vr-only"
+            ],
             "displayName": "[VR-only] RelWithDebInfo",
             "binaryDir": "${sourceDir}/build/vr-only/relwithdebinfo"
+        },
+        {
+            "name": "ci",
+            "displayName": "CI Release",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/ci",
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_BUILD_TYPE": "Release",
+                "VCPKG_TARGET_TRIPLET": "x64-windows-static-md",
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL",
+                "CMAKE_CXX_FLAGS": "/permissive- /Zc:preprocessor /EHsc /MP -DWIN32_LEAN_AND_MEAN -DNOMINMAX -DUNICODE -D_UNICODE"
+            }
         }
     ]
 }
